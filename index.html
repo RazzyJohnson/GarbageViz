@@ -43,21 +43,14 @@
 			background-color: red;
 		}
 
-		#info .categoryinfo .categoryfirst{
-			height: 60px;
-			background-color: green;
-
-		}
 
 		#info .categoryinfo .categoryrest{
 			height: 30px;
-		}
-
-		#info .categoryinfo .categoryfirst .amountgarbage{
-			font-size: 22px;
-			margin: 0 4px;
+			background-color: green;
 			color: white;
 		}
+
+		
 
 	/*	polygon:hover {
 			fill: yellow;
@@ -76,11 +69,6 @@
 			Huishoudelijk 
 		</div>
 	
-		<div class="categoryfirst">
-			<div class="amountgarbage">
-				1000
-			</div>
-		</div>
 		<div class="categoryrest">
 				1200
 		</div>
@@ -90,7 +78,7 @@
 			Papier 
 		</div>
 	</div>
-	<div id="category" class="categoryinfo">
+	<div id="glas" class="categoryinfo">
 		<div class="title">
 			Glas
 		</div>
@@ -579,14 +567,25 @@
 
 			$('polygon').on('click',function(e){
 				//TODO Here should come some zoom stuff
-
+				$('.categoryrest').remove();
 				$("#regionname").text(this.id);
 				var regionData = regionAsKeyData[this.id];
 				for(year in regionData){
-					var hoeveelheid = regionData[year]['Huishoudelijk restafval'];
-					if(! _(hoeveelheid).isUndefined()){
-						$('#huishoudelijk').append('<div class="categoryrest">'+hoeveelheid+'</div>')
+					var restAfvalHoeveelheid = regionData[year]['Huishoudelijk restafval'];
+					if(! _(restAfvalHoeveelheid).isUndefined()){
+						$('#huishoudelijk').append('<div class="categoryrest">'+restAfvalHoeveelheid+'</div>')
 					}
+
+					var oudPapierHoveelheid = regionData[year]['Oud papier en karton'];
+					if(! _(oudPapierHoveelheid).isUndefined()){
+						$('#papier').append('<div class="categoryrest">'+oudPapierHoveelheid+'</div>')
+					}
+
+					var glasHoveelheid = regionData[year]['Verpakkingsglas'];
+					if(! _(glasHoveelheid).isUndefined()){
+						$('#glas').append('<div class="categoryrest">'+glasHoveelheid+'</div>')
+					}
+
 				}				
 				// if(zoomedIn){
 				// 	panZoomTiger.fit();
