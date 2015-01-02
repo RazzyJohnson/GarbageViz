@@ -233,6 +233,8 @@
 			$('#selectionoptions label input').click(function(){refreshMap()});
 
 			$('#chartpanel svg').on('click', 'polygon', function(){ 
+				$(this).css('storke', 2);
+
 				$('#detailspanel').show();
 				$('#detailspanel .panel-heading h3').text('');
 				$('#detailspanel .panel-heading h3').text('Details van stad: ' + this.id);
